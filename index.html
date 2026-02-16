@@ -495,3 +495,129 @@ color:blue;
 
 </body>
 </html>
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>4ever Pump - Galaxy Landing</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    /* Starry background animation */
+    body {
+      background: black;
+      overflow-y: scroll;
+    }
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: transparent url('https://i.imgur.com/6vVb9St.png') repeat;
+      animation: moveStars 200s linear infinite;
+      z-index: -1;
+    }
+    @keyframes moveStars {
+      from {background-position: 0 0;}
+      to {background-position: -10000px 5000px;}
+    }
+
+    section {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 50px 20px;
+      scroll-snap-align: start;
+    }
+
+    .hero {
+      background: linear-gradient(rgba(0,0,50,0.6), rgba(0,0,0,0.8));
+      width: 100%;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 70px;
+      color: cyan;
+      text-shadow: 0 0 20px purple;
+      margin-bottom: 30px;
+    }
+
+    .explore-btn {
+      display: inline-block;
+      padding: 20px 50px;
+      font-size: 24px;
+      background: purple;
+      color: white;
+      text-decoration: none;
+      border-radius: 12px;
+      text-shadow: 0 0 10px black;
+      transition: transform 0.2s, background 0.3s;
+      cursor: pointer;
+    }
+
+    .explore-btn:hover {
+      transform: scale(1.05);
+      background: #9400d3;
+    }
+
+    .features {
+      max-width: 800px;
+      text-align: center;
+    }
+    .features h2 {
+      font-size: 50px;
+      color: #b19cd9;
+      margin-bottom: 20px;
+    }
+    .features p {
+      font-size: 20px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="stars"></div>
+
+<!-- Hero Section -->
+<section class="hero">
+  <h1>4ever Pump</h1>
+  <a href="product.html" class="explore-btn">Explore Galaxy</a>
+</section>
+
+<!-- Features / Scroll Section -->
+<section class="features">
+  <h2>Galaxy Energy Booster</h2>
+  <p>Experience the ultimate cosmic energy with 4ever Pump. Boost your workouts, elevate your mind, and feel unstoppable.</p>
+  <p>Check out our exclusive products below and elevate your energy to the stars.</p>
+</section>
+
+<!-- Add more sections if needed -->
+<section class="features">
+  <h2>Stellar Shaker</h2>
+  <p>Shake up your day with style and speed — perfect for pre-workout fuel!</p>
+</section>
+
+<section class="features">
+  <h2>Cosmic Protein</h2>
+  <p>High-quality protein with a galaxy twist for maximum gains!</p>
+</section>
+
+</body>
+</html>
