@@ -156,3 +156,88 @@
   </div>
   <!-- Add more items -->
 </div>
+
+
+
+.catalog {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  max-width: 1000px;
+  margin: 50px auto;
+  padding: 0 20px;
+}
+
+.item {
+  background: rgba(255,255,255,0.05);
+  border: 2px solid #9400d3;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px purple;
+}
+
+.item img {
+  width: 100%;
+  max-width: 200px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.item h3 {
+  margin: 10px 0;
+  font-size: 24px;
+  color: cyan;
+}
+
+.item p {
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.buy-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 30px;
+  background: purple;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: transform 0.2s, background 0.3s;
+}
+
+.buy-btn:hover {
+  background: #9400d3;
+  transform: scale(1.05);
+}
+
+<a href="https://www.gumroad.com/l/galaxy-booster" class="buy-btn">Buy Now</a>
+
+
+
+
+
+const products = [
+  {name:"Galaxy Booster", desc:"Boost your energy", img:"https://via.placeholder.com/200x150.png?text=Item+1", link:"#"},
+  {name:"Stellar Shaker", desc:"Shake up your day", img:"https://via.placeholder.com/200x150.png?text=Item+2", link:"#"},
+  {name:"Cosmic Protein", desc:"Protein with galaxy twist", img:"https://via.placeholder.com/200x150.png?text=Item+3", link:"#"}
+];
+
+const catalog = document.querySelector(".catalog");
+
+products.forEach(p => {
+  const div = document.createElement("div");
+  div.className = "item";
+  div.innerHTML = `
+    <img src="${p.img}" alt="${p.name}">
+    <h3>${p.name}</h3>
+    <p>${p.desc}</p>
+    <a href="${p.link}" class="buy-btn">Buy Now</a>
+  `;
+  catalog.appendChild(div);
+});
