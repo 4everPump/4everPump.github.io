@@ -350,3 +350,148 @@ color:blue;
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Galaxy Lounge - 4ever Pump</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: radial-gradient(circle at center, #001f4d, #000814, #000000);
+      color: white;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 60px;
+      margin-top: 40px;
+      color: #b19cd9;
+      text-shadow: 0 0 20px purple;
+    }
+
+    .catalog {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+
+    .item {
+      background: rgba(255,255,255,0.05);
+      border: 2px solid #9400d3;
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.3s;
+    }
+
+    .item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px purple;
+    }
+
+    .item img {
+      width: 100%;
+      max-width: 200px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .item h3 {
+      margin: 10px 0;
+      font-size: 24px;
+      color: cyan;
+    }
+
+    .item p {
+      font-size: 16px;
+      line-height: 1.4;
+    }
+
+    .buy-btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 30px;
+      background: purple;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: transform 0.2s, background 0.3s;
+    }
+
+    .buy-btn:hover {
+      background: #9400d3;
+      transform: scale(1.05);
+    }
+
+    a.back {
+      display: block;
+      text-align: center;
+      margin-top: 40px;
+      color: cyan;
+      text-decoration: none;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Galaxy Lounge</h1>
+
+  <div class="catalog">
+    <div class="item">
+      <img src="https://via.placeholder.com/200x150.png?text=Galaxy+Booster" alt="Galaxy Booster">
+      <h3>Galaxy Booster</h3>
+      <p>Boost your energy and elevate your workouts to cosmic levels!</p>
+      <a href="#" class="buy-btn">Buy Now</a>
+    </div>
+
+    <div class="item">
+      <img src="https://via.placeholder.com/200x150.png?text=Stellar+Shaker" alt="Stellar Shaker">
+      <h3>Stellar Shaker</h3>
+      <p>Shake up your day with style and speed — perfect for pre-workout fuel!</p>
+      <a href="#" class="buy-btn">Buy Now</a>
+    </div>
+
+    <div class="item">
+      <img src="https://via.placeholder.com/200x150.png?text=Cosmic+Protein" alt="Cosmic Protein">
+      <h3>Cosmic Protein</h3>
+      <p>High-quality protein with a galaxy twist for maximum gains!</p>
+      <a href="#" class="buy-btn">Buy Now</a>
+    </div>
+
+    <div class="item">
+      <img src="https://via.placeholder.com/200x150.png?text=Nova+Energy" alt="Nova Energy">
+      <h3>Nova Energy</h3>
+      <p>Stay energized throughout the day with our cosmic formula.</p>
+      <a href="#" class="buy-btn">Buy Now</a>
+    </div>
+
+    <div class="item">
+      <img src="https://via.placeholder.com/200x150.png?text=Star+Fuel" alt="Star Fuel">
+      <h3>Star Fuel</h3>
+      <p>Fuel your workouts with the power of the stars!</p>
+      <a href="#" class="buy-btn">Buy Now</a>
+    </div>
+
+  </div>
+
+  <a href="index.html" class="back">← Back to Home</a>
+
+</body>
+</html>
