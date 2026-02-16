@@ -621,3 +621,41 @@ color:blue;
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+section {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* changed from center to flex-start */
+  flex-direction: column;
+  padding: 100px 20px 50px 20px; /* top padding increased to 100px */
+  scroll-snap-align: start;
+}
+
+
+
+
+
+<section class="hero">
+  <h1>4ever Pump</h1>
+  <a href="product.html" class="explore-btn">Explore Galaxy</a>
+</section>
+
+
+
+.hero {
+  background: linear-gradient(rgba(0,0,50,0.6), rgba(0,0,0,0.8));
+  width: 100%;
+  text-align: center;
+  padding-top: 150px; /* extra top space */
+}
+
