@@ -791,3 +791,162 @@ body {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>4ever Pump - GOD FIRST Galaxy</title>
+<style>
+/* RESET */
+* {margin:0; padding:0; box-sizing:border-box;}
+body {font-family: Arial,sans-serif; color:white; overflow-x:hidden;}
+
+/* PARALLAX GALAXY BACKGROUND */
+body {
+    background: linear-gradient(to bottom, #050010, #14002b, #1f003d, #0a1a4f, #030a1f);
+}
+
+/* STARS */
+.stars {
+    position: fixed;
+    width:100%; height:100%;
+    background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+    animation: moveStars 200s linear infinite;
+    z-index: -2;
+    opacity:0.7;
+}
+@keyframes moveStars{from{background-position:0 0;} to{background-position:2000px 1000px;}}
+
+/* SHOOTING STARS */
+.shooting-star {
+    position:absolute; width:2px; height:80px;
+    background: linear-gradient(45deg, white, rgba(255,255,255,0));
+    top:-100px; animation:shoot linear infinite; opacity:0.8;
+}
+@keyframes shoot{0%{transform:translateX(0) translateY(0) rotate(45deg);} 100%{transform:translateX(-2000px) translateY(2000px) rotate(45deg);}}
+
+/* HERO SECTION */
+section {min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding:150px 20px 100px 20px; scroll-snap-align:start; position:relative;}
+h1 {font-size:60px; color:#00ffff; text-shadow:0 0 20px #7b3fff,0 0 40px #1e90ff; margin-bottom:40px;}
+
+/* BUTTONS */
+.galaxy-btn{padding:20px 50px; font-size:24px; border:none; border-radius:30px; cursor:pointer; background:linear-gradient(45deg,#5b2dff,#1e90ff); color:white; text-shadow:0 0 10px black; box-shadow:0 0 25px #5b2dff; transition:0.3s;}
+.galaxy-btn:hover{transform:scale(1.1); box-shadow:0 0 50px #7b3fff,0 0 60px #1e90ff;}
+
+/* PRODUCTS GRID */
+.products{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:40px; max-width:1200px; margin-top:50px; perspective:1000px;}
+
+/* PRODUCT CARDS */
+.product-card{
+    background:rgba(255,255,255,0.05); padding:20px; border-radius:25px; backdrop-filter:blur(10px); border:2px solid #5b2dff;
+    transition: transform 0.3s, box-shadow 0.3s; position:relative;
+}
+.product-card:hover{transform:translateY(-10px) scale(1.05); box-shadow:0 0 40px #7b3fff,0 0 60px #1e90ff;}
+.product-card img{width:100%; border-radius:15px; margin-bottom:15px; transition: transform 0.3s;}
+.product-card img:hover{transform:scale(1.08);}
+.product-card h2{font-size:24px;margin-bottom:10px;}
+.product-card .price{font-size:20px;color:#00ffff;margin-bottom:10px;}
+.buy-btn{padding:12px 30px;background:purple;color:white;border-radius:15px;border:none;cursor:pointer; transition:transform 0.3s, background 0.3s;}
+.buy-btn:hover{background:#7b3fff; transform:scale(1.05);}
+
+/* FLOATING EFFECT */
+@keyframes floatUp{0%{transform:translateY(0);}50%{transform:translateY(-15px);}100%{transform:translateY(0);}}
+.product-card{animation:floatUp 4s ease-in-out infinite;}
+
+/* PARTICLE EFFECT */
+.particle{
+    position:absolute;
+    width:4px; height:4px; border-radius:50%;
+    background:white; opacity:0.7;
+    animation: particleAnim linear infinite;
+}
+@keyframes particleAnim{0%{transform:translateY(0);}100%{transform:translateY(-800px);}}
+</style>
+</head>
+<body>
+
+<!-- STARS LAYER -->
+<div class="stars"></div>
+
+<!-- SHOOTING STARS -->
+<script>
+for(let i=0;i<15;i++){
+    let star=document.createElement('div');
+    star.className='shooting-star';
+    star.style.top=Math.random()*window.innerHeight+'px';
+    star.style.left=Math.random()*window.innerWidth+'px';
+    star.style.animationDuration=1.5+Math.random()*2+'s';
+    star.style.animationDelay=Math.random()*5+'s';
+    document.body.appendChild(star);
+}
+// PARTICLES AROUND PRODUCTS
+for(let i=0;i<30;i++){
+    let p=document.createElement('div');
+    p.className='particle';
+    p.style.top=Math.random()*window.innerHeight+'px';
+    p.style.left=Math.random()*window.innerWidth+'px';
+    p.style.width=(2+Math.random()*3)+'px';
+    p.style.height=p.style.width;
+    p.style.animationDuration=(2+Math.random()*3)+'s';
+    document.body.appendChild(p);
+}
+</script>
+
+<!-- HERO -->
+<section>
+    <h1>4ever Pump - GOD FIRST</h1>
+    <button class="galaxy-btn" onclick="location.href='product.html'">Explore Galaxy</button>
+</section>
+
+<!-- PRODUCTS -->
+<section>
+    <h1>Products</h1>
+    <div class="products">
+
+        <div class="product-card">
+            <img src="product1.png" alt="GOD FIRST Hoodie">
+            <h2>GOD FIRST Hoodie</h2>
+            <div class="price">$99.99</div>
+            <button class="buy-btn" onclick="window.open('https://www.paypal.com/paypalme/YOURLINK1','_blank')">Buy Now</button>
+        </div>
+
+        <div class="product-card">
+            <img src="product2.png" alt="GOD FIRST Tee">
+            <h2>GOD FIRST Tee</h2>
+            <div class="price">$39.99</div>
+            <button class="buy-btn" onclick="window.open('https://www.paypal.com/paypalme/YOURLINK2','_blank')">Buy Now</button>
+        </div>
+
+        <div class="product-card">
+            <img src="product3.png" alt="Gaming Headset">
+            <h2>Galaxy Gaming Headset</h2>
+            <div class="price">$59.99</div>
+            <button class="buy-btn" onclick="window.open('https://www.paypal.com/paypalme/YOURLINK3','_blank')">Buy Now</button>
+        </div>
+
+        <div class="product-card">
+            <img src="product4.png" alt="Gaming Keyboard">
+            <h2>Galaxy Mechanical Keyboard</h2>
+            <div class="price">$89.99</div>
+            <button class="buy-btn" onclick="window.open('https://www.paypal.com/paypalme/YOURLINK4','_blank')">Buy Now</button>
+        </div>
+
+    </div>
+</section>
+</body>
+</html>
