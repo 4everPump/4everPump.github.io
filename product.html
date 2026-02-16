@@ -648,3 +648,90 @@ products.forEach(p => {
 
 
 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GOD FIRST Store</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+            color: white;
+            text-align: center;
+        }
+
+        h1 {
+            padding-top: 60px;
+            font-size: 40px;
+        }
+
+        .products {
+            margin-top: 50px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            padding-bottom: 100px;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 20px;
+            width: 280px;
+            backdrop-filter: blur(10px);
+        }
+
+        .product-card img {
+            width: 100%;
+            border-radius: 15px;
+        }
+
+        .price {
+            font-size: 22px;
+            margin: 10px 0;
+            color: #00ffff;
+        }
+
+        .buy-btn {
+            background: purple;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .buy-btn:hover {
+            background: #a020f0;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>GOD FIRST Collection</h1>
+
+<div class="products">
+
+    <div class="product-card">
+        <img src="product1.png" alt="Fear of God Hoodie">
+        <h2>GOD FIRST Hoodie</h2>
+        <div class="price">$99.99</div>
+        <button class="buy-btn">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="product2.png" alt="Gaming Mouse">
+        <h2>GOD FIRST Gaming Mouse</h2>
+        <div class="price">$49.99</div>
+        <button class="buy-btn">Add to Cart</button>
+    </div>
+
+</div>
+
+</body>
+</html>
