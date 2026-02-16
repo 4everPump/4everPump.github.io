@@ -701,3 +701,93 @@ products.forEach(p => {
         text-align: center;
     }
 </style>
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(
+        to bottom,
+        #050010 0%,
+        #14002b 30%,
+        #1f003d 55%,
+        #0a1a4f 75%,
+        #030a1f 100%
+    );
+    color: white;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+/* STAR LAYER */
+.stars {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+    animation: moveStars 60s linear infinite;
+    z-index: -1;
+    opacity: 0.6;
+}
+
+/* SLOW STAR MOVEMENT */
+@keyframes moveStars {
+    from { background-position: 0 0; }
+    to { background-position: 1000px 1000px; }
+}
+
+/* GLOW EFFECT */
+.glow {
+    text-shadow: 0 0 10px #7b3fff, 
+                 0 0 20px #5b2dff, 
+                 0 0 30px #1e90ff;
+}
+
+/* BUTTON STYLE */
+.galaxy-btn {
+    padding: 15px 35px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    background: linear-gradient(45deg, #5b2dff, #1e90ff);
+    color: white;
+    transition: 0.3s ease;
+    box-shadow: 0 0 15px #5b2dff;
+}
+
+.galaxy-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 25px #7b3fff, 0 0 40px #1e90ff;
+}
+</style>
+
+
+
+
+
+
+<div class="stars"></div>
+
+
+
+
+
+<h1 class="glow">4EVER PUMP</h1>
+
+
+
+
+
