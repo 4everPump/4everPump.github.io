@@ -1380,3 +1380,79 @@ document.getElementById('checkout').addEventListener('click', ()=>{
     window.open(paypalLink,'_blank');
 });
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- CART -->
+<div id="cart">
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+    <div>Total: $<span id="cart-total">0.00</span></div>
+    <!-- Only one Checkout button -->
+    <button class="checkout-btn" id="checkout">Checkout with PayPal</button>
+</div>
+
+<script>
+// CART LOGIC
+let cart = [];
+
+function updateCart(){
+    const cartItems = document.getElementById('cart-items');
+    cartItems.innerHTML = '';
+    let total = 0;
+
+    cart.forEach((item,index)=>{
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `
+            ${item.name} x${item.qty} - $${(item.price*item.qty).toFixed(2)}
+            <button style="margin-left:10px;padding:2px 8px;background:red;color:white;border:none;border-radius:5px;cursor:pointer;" onclick="removeFromCart(${index})">Remove</button>
+        `;
+        cartItems.appendChild(div);
+        total += item.price*item.qty;
+    });
+
+    document.getElementById('cart-total').textContent = total.toFixed(2);
+}
+
+// REMOVE ITEM FROM CART
+function removeFromCart(index){
+    cart.splice(index,1);
+    updateCart();
+}
+
+// ADD TO CART BUTTONS
+document.querySelectorAll('.buy-btn').forEach(btn=>{
+    btn.addEventListener('click', e=>{
+        const card = e.target.closest('.product-card');
+        const name = card.dataset.name;
+        const price = parseFloat(card.dataset.price);
+        let found = cart.find(i=>i.name===name);
+        if(found){ found.qty +=1; } else { cart.push({name:name, price:price, qty:1}); }
+        updateCart();
+    });
+});
+
+// CHECKOUT BUTTON
+document.getElementById('checkout').addEventListener('click', ()=>{
+    if(cart.length===0){ alert('Cart is empty!'); return; }
+    let total = cart.reduce((sum,i)=>sum+i.price*i.qty,0);
+    let paypalLink = `https://www.paypal.com/paypalme/YOURNAME/${total.toFixed(2)}`;
+    window.open(paypalLink,'_blank');
+});
+</script>
