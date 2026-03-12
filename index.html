@@ -239,6 +239,1296 @@ function App() {
         <Route path="/products" element={<ProductsPage />} />
       </Routes>
     </BrowserRouter>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>4ever Pump</title>
+  <style>
+    /* Make the page full screen */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      color: white;
+    }
+
+    /* Blue galaxy background */
+    body {
+      background: radial-gradient(circle at center, #001f4d, #000814, #000000);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    /* Big title */
+    h1 {
+      font-size: 80px;
+      margin: 0;
+      text-shadow: 0 0 30px cyan, 0 0 60px blue;
+    }
+
+    /* Stars animation */
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 2s infinite;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.5; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.5); }
+    }
+
+    /* Explore Galaxy Button */
+    .explore-btn {
+      margin-top: 40px;
+      padding: 20px 50px;
+      font-size: 24px;
+      background: blue;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      text-decoration: none;
+      text-shadow: 0 0 10px black;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .explore-btn:hover {
+      background: darkblue;
+      transform: scale(1.05);
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>4ever Pump</h1>
+
+  <!-- Button linking to galaxy page -->
+  <a href="galaxy.html" class="explore-btn">Explore Galaxy</a>
+
+  <!-- Stars -->
+  <script>
+    const numStars = 150; // number of stars
+    for(let i=0;i<numStars;i++){
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.width = star.style.height = Math.random()*3 + 1 + 'px';
+      star.style.top = Math.random()*100 + '%';
+      star.style.left = Math.random()*100 + '%';
+      star.style.animationDuration = (Math.random()*3+2) + 's';
+      document.body.appendChild(star);
+    }
+  </script>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Landing Page</title>
+  <style>
+    /* Your existing CSS goes here */
+
+    /* Button CSS */
+    .button {
+      background-color: #6a0dad;   /* purple button */
+      color: white;
+      padding: 15px 30px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .button:hover {
+      background-color: #4b0082;   /* darker purple on hover */
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- Your existing landing page content -->
+  <h1>Welcome to My Site!</h1>
+  <p>Check out my website features.</p>
+
+  <!-- Add the button here -->
+  <a href="newpage.html" class="button">🚀 Explore Galaxy</a>
+
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Galaxy Explorer</title>
+  <style>
+    /* Starry night background */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      color: #00ffff;
+      text-align: center;
+      background: radial-gradient(ellipse at bottom, #000010 0%, #000000 100%);
+      overflow-x: hidden;
+    }
+
+    /* Star animation */
+    .stars {
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: transparent;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .stars::after {
+      content: "";
+      width: 2px;
+      height: 2px;
+      background: white;
+      box-shadow:
+        50px 100px white,
+        200px 150px white,
+        350px 50px white,
+        500px 200px white,
+        650px 120px white,
+        800px 80px white,
+        950px 180px white,
+        1100px 90px white,
+        1250px 160px white;
+      position: absolute;
+      animation: twinkle 2s infinite alternate;
+    }
+
+    @keyframes twinkle {
+      from { opacity: 0.5; }
+      to { opacity: 1; }
+    }
+
+    h1 {
+      font-size: 50px;
+      margin-top: 50px;
+      text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+    }
+
+    p {
+      font-size: 20px;
+      max-width: 800px;
+      margin: 20px auto;
+      line-height: 1.5;
+    }
+
+    img {
+      width: 200px;
+      margin: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #00ffff;
+    }
+
+
+
+
+  <!-- Star effect layer -->
+  <div class="stars"></div>
+
+  <h1>🌌 Welcome to the Galaxy!</h1>
+
+  <p>Explore the wonders of space right from your browser. Discover planets, stars, and cosmic phenomena as you scroll and interact with this page.</p>
+
+  <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/NGC_4414_Hubble_WikiSky.jpg" alt="Galaxy Image">
+
+  <p>This page is your playground! You can add more images, fun facts about planets, or even embed videos of space explorations. Let your creativity take flight.</p>
+
+  <!-- Navigation Buttons -->
+  <a href="index.html" class="button">🏠 Back to Landing Page</a>
+  <a href="#" class="button">✨ Explore More Stars</a>
+
+  <p>Tip: Edit this page by adding <code>&lt;p&gt;</code> for more text, <code>&lt;img&gt;</code> for images, or CSS animations to make it shine!</p>
+
+</body>
+</html>
+
+
+<explore>button page </explore>  
+<button>page</button>  
+color:blue;
+
+
+
+
+
+
+
+
+ <a href="product.html" style="
+  display:inline-block;
+  padding:20px 50px;
+  font-size:24px;
+  background: purple;
+  color:white;
+  text-decoration:none;
+  border-radius:12px;
+  text-shadow:0 0 10px black;
+  transition: background 0.3s, transform 0.2s;
+  cursor:pointer;">
+  Explore Galaxy
+</a>
+
+
+    Remove duplicate bottom purple button
+
+    
+
+
+
+
+
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Galaxy Lounge - 4ever Pump</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: radial-gradient(circle at center, #001f4d, #000814, #000000);
+      color: white;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 60px;
+      margin-top: 40px;
+      color: #b19cd9;
+      text-shadow: 0 0 20px purple;
+    }
+
+    .catalog {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+
+    .item {
+      background: rgba(255,255,255,0.05);
+      border: 2px solid #9400d3;
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.3s;
+    }
+
+    .item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px purple;
+    }
+
+    .item img {
+      width: 100%;
+      max-width: 200px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .item h3 {
+      margin: 10px 0;
+      font-size: 24px;
+      color: cyan;
+    }
+
+    .item p {
+      font-size: 16px;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Galaxy Lounge</h1>
+
+  <div class="catalog">
+    <div class="item">
+      <img src="https://via.placeholder.com/200x150.png?text=Item+1" alt="Item 1">
+      <h3>Galaxy Booster</h3>
+      <p>Boost your energy and elevate your workouts to cosmic levels!</p>
+    </div>
+
+    <div class="item">
+      <img src="https://via.placeholder.com/200x150.png?text=Item+2" alt="Item 2">
+      <h3>Stellar Shaker</h3>
+      <p>Shake up your day with style and speed — perfect for pre-workout fuel!</p>
+    </div>
+
+    <div class="item">
+      <img src="https://via.placeholder.com/200x150.png?text=Item+3" alt="Item 3">
+      <h3>Cosmic Protein</h3>
+      <p>High-quality protein with a galaxy twist for maximum gains!</p>
+    </div>
+
+    <!-- Add more items as needed -->
+  </div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Galaxy Lounge - 4ever Pump</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: radial-gradient(circle at center, #001f4d, #000814, #000000);
+      color: white;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 60px;
+      margin-top: 40px;
+      color: #b19cd9;
+      text-shadow: 0 0 20px purple;
+    }
+
+    .catalog {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+
+    .item {
+      background: rgba(255,255,255,0.05);
+      border: 2px solid #9400d3;
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.3s;
+    }
+
+    .item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px purple;
+    }
+
+    .item img {
+      width: 100%;
+      max-width: 200px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .item h3 {
+      margin: 10px 0;
+      font-size: 24px;
+      color: cyan;
+    }
+
+    .item p {
+      font-size: 16px;
+      line-height: 1.4;
+    }
+
+    .buy-btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 30px;
+      background: purple;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: transform 0.2s, background 0.3s;
+    }
+
+    .buy-btn:hover {
+      background: #9400d3;
+      transform: scale(1.05);
+    }
+
+    a.back {
+      display: block;
+      text-align: center;
+      margin-top: 40px;
+      color: cyan;
+      text-decoration: none;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Galaxy Lounge</h1>
+
+  <div class="catalog">
+    <div class="item">
+      <img src="https://via.placeholder.com/200x150.png?text=Galaxy+Booster" alt="Galaxy Booster">
+      <h3>Galaxy Booster</h3>
+      <p>Boost your energy and elevate your workouts to cosmic levels!</p>
+      <a href="#" class="buy-btn">Buy Now</a>
+    </div>
+
+    <div class="item">
+      <img src="https://via.placeholder.com/200x150.png?text=Stellar+Shaker" alt="Stellar Shaker">
+      <h3>Stellar Shaker</h3>
+      <p>Shake up your day with style and speed — perfect for pre-workout fuel!</p>
+      <a href="#" class="buy-btn">Buy Now</a>
+    </div>
+
+    <div class="item">
+      <img src="https://via.placeholder.com/200x150.png?text=Cosmic+Protein" alt="Cosmic Protein">
+      <h3>Cosmic Protein</h3>
+      <p>High-quality protein with a galaxy twist for maximum gains!</p>
+      <a href="#" class="buy-btn">Buy Now</a>
+    </div>
+
+    <div class="item">
+      <img src="https://via.placeholder.com/200x150.png?text=Nova+Energy" alt="Nova Energy">
+      <h3>Nova Energy</h3>
+      <p>Stay energized throughout the day with our cosmic formula.</p>
+      <a href="#" class="buy-btn">Buy Now</a>
+    </div>
+
+    <div class="item">
+      <img src="https://via.placeholder.com/200x150.png?text=Star+Fuel" alt="Star Fuel">
+      <h3>Star Fuel</h3>
+      <p>Fuel your workouts with the power of the stars!</p>
+      <a href="#" class="buy-btn">Buy Now</a>
+    </div>
+
+  </div>
+
+  <a href="index.html" class="back">← Back to Home</a>
+
+</body>
+</html>
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>4ever Pump - Galaxy Landing</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    /* Starry background animation */
+    body {
+      background: black;
+      overflow-y: scroll;
+    }
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: transparent url('https://i.imgur.com/6vVb9St.png') repeat;
+      animation: moveStars 200s linear infinite;
+      z-index: -1;
+    }
+    @keyframes moveStars {
+      from {background-position: 0 0;}
+      to {background-position: -10000px 5000px;}
+    }
+
+    section {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 50px 20px;
+      scroll-snap-align: start;
+    }
+
+    .hero {
+      background: linear-gradient(rgba(0,0,50,0.6), rgba(0,0,0,0.8));
+      width: 100%;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 70px;
+      color: cyan;
+      text-shadow: 0 0 20px purple;
+      margin-bottom: 30px;
+    }
+
+    .explore-btn {
+      display: inline-block;
+      padding: 20px 50px;
+      font-size: 24px;
+      background: purple;
+      color: white;
+      text-decoration: none;
+      border-radius: 12px;
+      text-shadow: 0 0 10px black;
+      transition: transform 0.2s, background 0.3s;
+      cursor: pointer;
+    }
+
+    .explore-btn:hover {
+      transform: scale(1.05);
+      background: #9400d3;
+    }
+
+    .features {
+      max-width: 800px;
+      text-align: center;
+    }
+    .features h2 {
+      font-size: 50px;
+      color: #b19cd9;
+      margin-bottom: 20px;
+    }
+    .features p {
+      font-size: 20px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="stars"></div>
+
+<!-- Hero Section -->
+<section class="hero">
+  <h1>4ever Pump</h1>
+  <a href="product.html" class="explore-btn">Explore Galaxy</a>
+</section>
+
+<!-- Features / Scroll Section -->
+<section class="features">
+  <h2>Galaxy Energy Booster</h2>
+  <p>Experience the ultimate cosmic energy with 4ever Pump. Boost your workouts, elevate your mind, and feel unstoppable.</p>
+  <p>Check out our exclusive products below and elevate your energy to the stars.</p>
+</section>
+
+<!-- Add more sections if needed -->
+<section class="features">
+  <h2>Stellar Shaker</h2>
+  <p>Shake up your day with style and speed — perfect for pre-workout fuel!</p>
+</section>
+
+<section class="features">
+  <h2>Cosmic Protein</h2>
+  <p>High-quality protein with a galaxy twist for maximum gains!</p>
+</section>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+section {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* changed from center to flex-start */
+  flex-direction: column;
+  padding: 100px 20px 50px 20px; /* top padding increased to 100px */
+  scroll-snap-align: start;
+}
+
+
+
+
+
+<section class="hero">
+  <h1>4ever Pump</h1>
+  <a href="product.html" class="explore-btn">Explore Galaxy</a>
+</section>
+
+
+
+.hero {
+  background: linear-gradient(rgba(0,0,50,0.6), rgba(0,0,0,0.8));
+  width: 100%;
+  text-align: center;
+  padding-top: 150px; /* extra top space */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>4ever Pump - Max Galaxy</title>
+<style>
+/* BASIC RESET */
+* {margin:0; padding:0; box-sizing:border-box;}
+
+/* BODY + GALAXY BACKGROUND */
+body {
+    font-family: Arial, sans-serif;
+    color: white;
+    background: linear-gradient(to bottom, #050010, #14002b, #1f003d, #0a1a4f, #030a1f);
+    overflow-x: hidden;
+    overflow-y: scroll;
+    position: relative;
+}
+
+/* STARS LAYER */
+.stars {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+    animation: moveStars 120s linear infinite;
+    z-index: -2;
+    opacity: 0.7;
+}
+@keyframes moveStars {
+    from {background-position:0 0;}
+    to {background-position:2000px 1000px;}
+}
+
+/* SHOOTING STARS */
+.shooting-star {
+    position: absolute;
+    width: 2px;
+    height: 80px;
+    background: linear-gradient(45deg, white, rgba(255,255,255,0));
+    top: -100px;
+    animation: shoot linear infinite;
+    opacity: 0.8;
+}
+@keyframes shoot {
+    0% {transform: translateX(0) translateY(0) rotate(45deg);}
+    100% {transform: translateX(-2000px) translateY(2000px) rotate(45deg);}
+}
+
+/* SECTION STYLING */
+section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 150px 20px 100px 20px;
+    scroll-snap-align: start;
+    position: relative;
+}
+
+/* HERO TITLE */
+h1 {
+    font-size: 60px;
+    color: #00ffff;
+    text-shadow: 0 0 20px #7b3fff, 0 0 40px #1e90ff;
+    margin-bottom: 40px;
+}
+
+/* BUTTON */
+.galaxy-btn {
+    padding: 20px 50px;
+    font-size: 24px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    background: linear-gradient(45deg, #5b2dff, #1e90ff);
+    color: white;
+    text-shadow: 0 0 10px black;
+    box-shadow: 0 0 25px #5b2dff;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.galaxy-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 50px #7b3fff, 0 0 60px #1e90ff;
+}
+
+/* PRODUCT GRID */
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin-top: 50px;
+}
+
+/* PRODUCT CARD */
+.product-card {
+    background: rgba(255,255,255,0.05);
+    padding: 20px;
+    border-radius: 25px;
+    backdrop-filter: blur(10px);
+    border: 2px solid #5b2dff;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+}
+.product-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 0 40px #7b3fff, 0 0 60px #1e90ff;
+}
+.product-card img {
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    transition: transform 0.3s;
+}
+.product-card img:hover {
+    transform: scale(1.05);
+}
+.product-card h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+.product-card .price {
+    font-size: 20px;
+    color: #00ffff;
+    margin-bottom: 10px;
+}
+.buy-btn {
+    padding: 12px 30px;
+    background: purple;
+    color: white;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s, background 0.3s;
+}
+.buy-btn:hover {
+    background: #7b3fff;
+    transform: scale(1.05);
+}
+
+/* FLOATING ANIMATION */
+@keyframes floatUp {
+    0% {transform: translateY(0);}
+    50% {transform: translateY(-15px);}
+    100% {transform: translateY(0);}
+}
+.product-card {
+    animation: floatUp 4s ease-in-out infinite;
+}
+</style>
+</head>
+
+<body>
+
+<!-- STARS -->
+<div class="stars"></div>
+
+<!-- SHOOTING STARS GENERATED VIA JS -->
+<script>
+for(let i=0;i<10;i++){
+    let star = document.createElement('div');
+    star.className = 'shooting-star';
+    star.style.top = Math.random()*window.innerHeight + 'px';
+    star.style.left = Math.random()*window.innerWidth + 'px';
+    star.style.animationDuration = 1.5 + Math.random()*2 + 's';
+    star.style.animationDelay = Math.random()*5 + 's';
+    document.body.appendChild(star);
+}
+</script>
+
+<!-- HERO SECTION -->
+<section>
+    <h1>4ever Pump - GOD FIRST</h1>
+    <button class="galaxy-btn" onclick="location.href='product.html'">Explore Galaxy</button>
+</section>
+
+<!-- PRODUCTS SECTION -->
+<section>
+    <h1>Products</h1>
+    <div class="products">
+
+        <div class="product-card">
+            <img src="product1.png" alt="GOD FIRST Hoodie">
+            <h2>GOD FIRST Hoodie</h2>
+            <div class="price">$99.99</div>
+            <button class="buy-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+            <img src="product2.png" alt="GOD FIRST Tee">
+            <h2>GOD FIRST Tee</h2>
+            <div class="price">$39.99</div>
+            <button class="buy-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+            <img src="product3.png" alt="Gaming Headset">
+            <h2>Galaxy Gaming Headset</h2>
+            <div class="price">$59.99</div>
+            <button class="buy-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+            <img src="product4.png" alt="Gaming Keyboard">
+            <h2>Galaxy Mechanical Keyboard</h2>
+            <div class="price">$89.99</div>
+            <button class="buy-btn">Add to Cart</button>
+        </div>
+
+    </div>
+</section>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+<div class="product-card">
+    <img src="product1.png" alt="GOD FIRST Hoodie">
+    <h2>GOD FIRST Hoodie</h2>
+    <div class="price">$99.99</div>
+    <button class="buy-btn" onclick="window.open('https://www.paypal.com/paypalme/yourname/99.99','_blank')">Add to Cart</button>
+</div>
+
+<div class="product-card">
+    <img src="product2.png" alt="GOD FIRST Tee">
+    <h2>GOD FIRST Tee</h2>
+    <div class="price">$39.99</div>
+    <button class="buy-btn" onclick="window.open('https://www.paypal.com/paypalme/yourname/39.99','_blank')">Add to Cart</button>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>4ever Pump - GOD FIRST Galaxy Max</title>
+<style>
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:Arial,sans-serif;color:white;overflow-x:hidden;scroll-behavior:smooth;}
+
+/* GALAXY BACKGROUND */
+body{
+    background:linear-gradient(to bottom,#050010,#14002b,#1f003d,#0a1a4f,#030a1f);
+    perspective:1000px;
+}
+
+/* STARS & PARTICLES */
+.stars{
+    position:fixed;width:100%;height:100%;
+    background:transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+    animation:moveStars 200s linear infinite;
+    z-index:-3;opacity:0.7;
+}
+@keyframes moveStars{from{background-position:0 0;}to{background-position:2000px 1000px;}}
+
+.shooting-star{
+    position:absolute;width:2px;height:80px;
+    background:linear-gradient(45deg,white,rgba(255,255,255,0));
+    top:-100px;animation:shoot linear infinite;opacity:0.8;
+}
+@keyframes shoot{0%{transform:translateX(0) translateY(0) rotate(45deg);}100%{transform:translateX(-2000px) translateY(2000px) rotate(45deg);}}
+
+.particle{
+    position:absolute;width:4px;height:4px;border-radius:50%;
+    background:white;opacity:0.7;
+    animation:particleAnim linear infinite;
+}
+@keyframes particleAnim{0%{transform:translateY(0);}100%{transform:translateY(-800px);}}
+
+section{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:150px 20px 100px 20px;scroll-snap-align:start;position:relative;}
+
+/* HERO */
+h1{font-size:60px;color:#00ffff;text-shadow:0 0 20px #7b3fff,0 0 40px #1e90ff;margin-bottom:40px;animation:floatText 3s ease-in-out infinite;}
+@keyframes floatText{0%{transform:translateY(0);}50%{transform:translateY(-10px);}100%{transform:translateY(0);}}
+
+/* BUTTONS */
+.galaxy-btn{
+    padding:20px 50px;font-size:24px;border:none;border-radius:30px;cursor:pointer;
+    background:linear-gradient(45deg,#5b2dff,#1e90ff);color:white;text-shadow:0 0 10px black;box-shadow:0 0 25px #5b2dff;transition:0.3s;
+}
+.galaxy-btn:hover{transform:scale(1.15);box-shadow:0 0 60px #7b3fff,0 0 80px #1e90ff;}
+
+/* PRODUCT GRID */
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:40px;max-width:1200px;margin-top:50px;perspective:1000px;}
+
+/* PRODUCT CARDS */
+.product-card{
+    background:rgba(255,255,255,0.05);padding:20px;border-radius:25px;backdrop-filter:blur(10px);
+    border:2px solid #5b2dff;transition:transform 0.3s,box-shadow 0.3s;position:relative;animation:floatUp 4s ease-in-out infinite;
+}
+.product-card:hover{transform:translateY(-15px) scale(1.08);box-shadow:0 0 60px #7b3fff,0 0 80px #1e90ff;}
+.product-card img{width:100%;border-radius:15px;margin-bottom:15px;transition:transform 0.3s;}
+.product-card img:hover{transform:scale(1.1);}
+.product-card h2{font-size:24px;margin-bottom:10px;}
+.product-card .price{font-size:20px;color:#00ffff;margin-bottom:10px;}
+.buy-btn{padding:12px 30px;background:purple;color:white;border-radius:15px;border:none;cursor:pointer;transition:transform 0.3s,background 0.3s;}
+.buy-btn:hover{background:#7b3fff; transform:scale(1.08);}
+
+/* FLOAT ANIMATION */
+@keyframes floatUp{0%{transform:translateY(0);}50%{transform:translateY(-20px);}100%{transform:translateY(0);}}
+
+/* CART */
+#cart{position:fixed;top:20px;right:20px;background:rgba(0,0,0,0.6);padding:20px;border-radius:20px;width:320px;box-shadow:0 0 50px #5b2dff;}
+#cart h2{margin-bottom:15px;text-align:center;}
+#cart-items{max-height:300px;overflow-y:auto;margin-bottom:15px;}
+.cart-item{display:flex;justify-content:space-between;margin-bottom:10px;}
+.checkout-btn{width:100%;padding:15px;background:linear-gradient(45deg,#5b2dff,#1e90ff);border:none;border-radius:20px;color:white;font-size:18px;cursor:pointer;transition:0.3s;}
+.checkout-btn:hover{transform:scale(1.05);}
+</style>
+</head>
+<body>
+
+<!-- STARS -->
+<div class="stars"></div>
+
+<!-- SHOOTING STARS & PARTICLES -->
+<script>
+// Shooting stars
+for(let i=0;i<20;i++){
+    let star=document.createElement('div');
+    star.className='shooting-star';
+    star.style.top=Math.random()*window.innerHeight+'px';
+    star.style.left=Math.random()*window.innerWidth+'px';
+    star.style.animationDuration=1.5+Math.random()*2+'s';
+    star.style.animationDelay=Math.random()*5+'s';
+    document.body.appendChild(star);
+}
+// Particles
+for(let i=0;i<50;i++){
+    let p=document.createElement('div');
+    p.className='particle';
+    p.style.top=Math.random()*window.innerHeight+'px';
+    p.style.left=Math.random()*window.innerWidth+'px';
+    p.style.width=(2+Math.random()*4)+'px';
+    p.style.height=p.style.width;
+    p.style.animationDuration=(2+Math.random()*3)+'s';
+    document.body.appendChild(p);
+}
+</script>
+
+<!-- HERO -->
+<section>
+    <h1>4ever Pump - GOD FIRST</h1>
+    <button class="galaxy-btn" onclick="location.href='product.html'">Explore Galaxy</button>
+</section>
+
+<!-- PRODUCTS -->
+<section>
+    <h1>Products</h1>
+    <div class="products">
+
+        <div class="product-card" data-name="GOD FIRST Hoodie" data-price="99.99">
+            <img src="product1.png" alt="GOD FIRST Hoodie">
+            <h2>GOD FIRST Hoodie</h2>
+            <div class="price">$99.99</div>
+            <button class="buy-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-name="GOD FIRST Tee" data-price="39.99">
+            <img src="product2.png" alt="GOD FIRST Tee">
+            <h2>GOD FIRST Tee</h2>
+            <div class="price">$39.99</div>
+            <button class="buy-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-name="Gaming Headset" data-price="59.99">
+            <img src="product3.png" alt="Gaming Headset">
+            <h2>Galaxy Gaming Headset</h2>
+            <div class="price">$59.99</div>
+            <button class="buy-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-name="Gaming Keyboard" data-price="89.99">
+            <img src="product4.png" alt="Gaming Keyboard">
+            <h2>Galaxy Mechanical Keyboard</h2>
+            <div class="price">$89.99</div>
+            <button class="buy-btn">Add to Cart</button>
+        </div>
+
+    </div>
+</section>
+
+<!-- CART -->
+<div id="cart">
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+    <div>Total: $<span id="cart-total">0.00</span></div>
+    <button class="checkout-btn" id="checkout">Checkout with PayPal</button>
+</div>
+
+<script>
+// CART LOGIC
+let cart=[];
+function updateCart(){
+    const cartItems=document.getElementById('cart-items');
+    cartItems.innerHTML='';
+    let total=0;
+    cart.forEach(item=>{
+        const div=document.createElement('div');
+        div.className='cart-item';
+        div.textContent=`${item.name} x${item.qty} - $${(item.price*item.qty).toFixed(2)}`;
+        cartItems.appendChild(div);
+        total+=item.price*item.qty;
+    });
+    document.getElementById('cart-total').textContent=total.toFixed(2);
+}
+
+// ADD TO CART BUTTONS
+document.querySelectorAll('.buy-btn').forEach(btn=>{
+    btn.addEventListener('click',e=>{
+        const card=e.target.closest('.product-card');
+        const name=card.dataset.name;
+        const price=parseFloat(card.dataset.price);
+        let found=cart.find(i=>i.name===name);
+        if(found){found.qty+=1;}else{cart.push({name:name,price:price,qty:1});}
+        updateCart();
+    });
+});
+
+// CHECKOUT BUTTON
+document.getElementById('checkout').addEventListener('click',()=>{
+    if(cart.length===0){alert('Cart is empty!'); return;}
+    let total=cart.reduce((sum,i)=>sum+i.price*i.qty,0);
+    let paypalLink=`https://www.paypal.com/paypalme/YOURNAME/${total.toFixed(2)}`;
+    window.open(paypalLink,'_blank');
+});
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- CART -->
+<div id="cart">
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+    <div>Total: $<span id="cart-total">0.00</span></div>
+    <button class="checkout-btn" id="checkout">Checkout with PayPal</button>
+</div>
+
+<script>
+// CART LOGIC
+let cart=[];
+
+function updateCart(){
+    const cartItems = document.getElementById('cart-items');
+    cartItems.innerHTML='';
+    let total=0;
+
+    cart.forEach((item,index)=>{
+        const div = document.createElement('div');
+        div.className='cart-item';
+        div.innerHTML = `
+            ${item.name} x${item.qty} - $${(item.price*item.qty).toFixed(2)}
+            <button style="margin-left:10px;padding:2px 8px;background:red;color:white;border:none;border-radius:5px;cursor:pointer;" onclick="removeFromCart(${index})">Remove</button>
+        `;
+        cartItems.appendChild(div);
+        total += item.price*item.qty;
+    });
+
+    document.getElementById('cart-total').textContent=total.toFixed(2);
+}
+
+// REMOVE ITEM
+function removeFromCart(index){
+    cart.splice(index,1);
+    updateCart();
+}
+
+// ADD TO CART BUTTONS
+document.querySelectorAll('.buy-btn').forEach(btn=>{
+    btn.addEventListener('click', e=>{
+        const card = e.target.closest('.product-card');
+        const name = card.dataset.name;
+        const price = parseFloat(card.dataset.price);
+        let found = cart.find(i=>i.name===name);
+        if(found){ found.qty +=1; } else { cart.push({name:name, price:price, qty:1}); }
+        updateCart();
+    });
+});
+
+// CHECKOUT BUTTON
+document.getElementById('checkout').addEventListener('click', ()=>{
+    if(cart.length===0){ alert('Cart is empty!'); return; }
+    let total = cart.reduce((sum,i)=>sum+i.price*i.qty,0);
+    let paypalLink = `https://www.paypal.com/paypalme/YOURNAME/${total.toFixed(2)}`;
+    window.open(paypalLink,'_blank');
+});
+</script>
+
+
+
+
+
+
+
+<!-- CART -->
+<div id="cart">
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+    <div>Total: $<span id="cart-total">0.00</span></div>
+    <!-- Only one Checkout button -->
+    <button class="checkout-btn" id="checkout">Checkout with PayPal</button>
+</div>
+
+<script>
+// CART LOGIC
+let cart = [];
+
+function updateCart(){
+    const cartItems = document.getElementById('cart-items');
+    cartItems.innerHTML = '';
+    let total = 0;
+
+    cart.forEach((item,index)=>{
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `
+            ${item.name} x${item.qty} - $${(item.price*item.qty).toFixed(2)}
+            <button style="margin-left:10px;padding:2px 8px;background:red;color:white;border:none;border-radius:5px;cursor:pointer;" onclick="removeFromCart(${index})">Remove</button>
+        `;
+        cartItems.appendChild(div);
+        total += item.price*item.qty;
+    });
+
+    document.getElementById('cart-total').textContent = total.toFixed(2);
+}
+
+// REMOVE ITEM FROM CART
+function removeFromCart(index){
+    cart.splice(index,1);
+    updateCart();
+}
+
+// ADD TO CART BUTTONS
+document.querySelectorAll('.buy-btn').forEach(btn=>{
+    btn.addEventListener('click', e=>{
+        const card = e.target.closest('.product-card');
+        const name = card.dataset.name;
+        const price = parseFloat(card.dataset.price);
+        let found = cart.find(i=>i.name===name);
+        if(found){ found.qty +=1; } else { cart.push({name:name, price:price, qty:1}); }
+        updateCart();
+    });
+});
+
+// CHECKOUT BUTTON
+document.getElementById('checkout').addEventListener('click', ()=>{
+    if(cart.length===0){ alert('Cart is empty!'); return; }
+    let total = cart.reduce((sum,i)=>sum+i.price*i.qty,0);
+    let paypalLink = `https://www.paypal.com/paypalme/YOURNAME/${total.toFixed(2)}`;
+    window.open(paypalLink,'_blank');
+});
+</script>
+
   );
 }
 
