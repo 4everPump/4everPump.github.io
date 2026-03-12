@@ -1,14 +1,245 @@
 
-* bas Neue font for the big 4EVER PUMP titles
-* Orbitron font for nav, buttons, and headings
-* Rajdhani font for body text and quotes
-* Glass effect on the navbar and quote card
-* Neon button with blue glow border that fills on hover
-* Grid background (blue grid lines on black)
-* "God Has You" modal — pops up when you click either the "Blessed" button in the nav or the "God Has You" button on the hero. Shows "God Has You" in white + "4ever pump" in blue with pulsing bars underneath
-* Spinning glow blurs in the hero background
-* Daily quote with a "Next Quote" button to cycle through — auto-picks today's quote on load
-* Product cards with hover zoom, HOT badge, star ratings, and "View Details" overlay
-* Featured Drops section on homepage, full grid on products page
-* About section with stats (1000+ customers, 100% authentic, 24/7 support) and social icons
-* Particle float animation throughout
+**Frontend - /app/frontend/src/App.js**
+```jsx
+import { useState, useEffect, useRef } from "react";
+import "@/App.css";
+import { BrowserRouter, Routes, Route, useNavigate, Link } from "react-router-dom";
+import { ChevronDown, Star, ShoppingBag, Zap, Crown, X, Instagram, Twitter, MessageCircle, ChevronRight, Quote, Heart, ArrowLeft, ArrowRight } from "lucide-react";
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const API = `${BACKEND_URL}/api`;
+
+// Daily Quotes Database
+const quotes = [
+  {
+    text: "99% of people never succeed because they don't know it's a game like chess and if you know the game of chess you know the game of life",
+    author: "4ever pump",
+    isFounder: true
+  },
+  {
+    text: "The grind never stops. While they sleep, we build empires.",
+    author: "4ever pump",
+    isFounder: true
+  },
+  {
+    text: "Success is not given, it's earned. Every. Single. Day.",
+    author: "4ever pump",
+    isFounder: true
+  },
+  {
+    text: "For I know the plans I have for you, declares the Lord, plans to prosper you and not to harm you, plans to give you hope and a future.",
+    author: "Jeremiah 29:11",
+    isFounder: false
+  },
+  {
+    text: "I can do all things through Christ who strengthens me.",
+    author: "Philippians 4:13",
+    isFounder: false
+  },
+  {
+    text: "Trust in the Lord with all your heart and lean not on your own understanding.",
+    author: "Proverbs 3:5",
+    isFounder: false
+  },
+  {
+    text: "Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go.",
+    author: "Joshua 1:9",
+    isFounder: false
+  },
+  {
+    text: "The race is not to the swift or the battle to the strong, but time and chance happen to them all.",
+    author: "Ecclesiastes 9:11",
+    isFounder: false
+  },
+  {
+    text: "And we know that in all things God works for the good of those who love him.",
+    author: "Romans 8:28",
+    isFounder: false
+  },
+  {
+    text: "Faith is taking the first step even when you don't see the whole staircase.",
+    author: "4ever pump",
+    isFounder: true
+  }
+];
+
+// Products Data
+const products = [
+  { id: 1, name: "Jordan 4 Retro", category: "Sneakers", price: "$320", originalPrice: "$190", image: "https://images.unsplash.com/photo-1584735175315-9d5df23860e6?w=500&q=80", rating: 5, hot: true },
+  { id: 2, name: "Supreme Box Logo Hoodie", category: "Streetwear", price: "$650", originalPrice: "$168", image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=500&q=80", rating: 5, hot: true },
+  { id: 3, name: "Rolex Submariner", category: "Watches", price: "$15,000", originalPrice: "$9,150", image: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=500&q=80", rating: 5, hot: false },
+  { id: 4, name: "Nike Dunk Low", category: "Sneakers", price: "$180", originalPrice: "$110", image: "https://images.unsplash.com/photo-1597045566677-8cf032ed6634?w=500&q=80", rating: 4, hot: true },
+  { id: 5, name: "Off-White Hoodie", category: "Streetwear", price: "$890", originalPrice: "$520", image: "https://images.unsplash.com/photo-1578587018452-892bacefd3f2?w=500&q=80", rating: 5, hot: false },
+  { id: 6, name: "Yeezy Boost 350", category: "Sneakers", price: "$380", originalPrice: "$230", image: "https://images.unsplash.com/photo-1607522370275-f14206abe5d3?w=500&q=80", rating: 5, hot: true },
+  { id: 7, name: "Louis Vuitton Belt", category: "Accessories", price: "$780", originalPrice: "$550", image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&q=80", rating: 5, hot: false },
+  { id: 8, name: "Travis Scott Merch", category: "Streetwear", price: "$450", originalPrice: "$85", image: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=500&q=80", rating: 4, hot: true }
+];
+
+const Particle = ({ delay, size, left, duration }) => (
+  <div className="absolute rounded-full bg-blue-500/20" style={{ width: size, height: size, left: `${left}%`, bottom: '-20px', animation: `particleFloat ${duration}s ease-in-out infinite`, animationDelay: `${delay}s` }} />
+);
+
+const GodHasYouModal = ({ isOpen, onClose }) => {
+  if (!isOpen) return null;
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={onClose}>
+      <div className="absolute inset-0 bg-black/90 backdrop-blur-sm" />
+      <div className="relative modal-reveal glass rounded-2xl p-8 md:p-12 max-w-lg w-full text-center" onClick={e => e.stopPropagation()}>
+        <button onClick={onClose} className="absolute top-4 right-4 text-white/50 hover:text-white transition-colors"><X size={24} /></button>
+        <div className="space-y-6">
+          <h2 className="text-5xl md:text-7xl font-bebas tracking-wider text-black glow-text-white" style={{ WebkitTextStroke: '2px white', textShadow: '0 0 30px rgba(255,255,255,0.5)' }}>God Has You</h2>
+          <h3 className="text-4xl md:text-5xl font-orbitron font-bold text-4ever-blue glow-text">4ever pump</h3>
+          <div className="flex justify-center gap-2 mt-4">
+            <div className="w-20 h-1 bg-white rounded animate-pulse" />
+            <div className="w-20 h-1 bg-4ever-blue rounded animate-pulse delay-100" />
+            <div className="w-20 h-1 bg-white rounded animate-pulse delay-200" />
+          </div>
+          <p className="text-white/70 text-lg font-rajdhani mt-6">Trust the process. Stay blessed. Keep grinding.</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const ProductCard = ({ product, index }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  return (
+    <div className="relative group card-hover gradient-border p-1 opacity-0 slide-in-up" style={{ animationDelay: `${index * 0.1}s`, animationFillMode: 'forwards' }} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+      <div className="bg-deep-black rounded-xl overflow-hidden">
+        <div className="relative h-64 overflow-hidden">
+          <img src={product.image} alt={product.name} className={`w-full h-full object-cover transition-transform duration-700 ${isHovered ? 'scale-110' : 'scale-100'}`} />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+          {product.hot && <div className="absolute top-3 left-3 bg-4ever-blue px-3 py-1 rounded-full flex items-center gap-1 text-xs font-bold animate-pulse"><Zap size={12} />HOT</div>}
+          <div className={`absolute inset-0 bg-blue-600/20 backdrop-blur-sm flex items-center justify-center transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
+            <button className="neon-button text-sm">View Details</button>
+          </div>
+        </div>
+        <div className="p-4 space-y-2">
+          <span className="text-4ever-blue text-xs font-semibold uppercase tracking-wider">{product.category}</span>
+          <h3 className="text-white font-orbitron font-bold text-lg">{product.name}</h3>
+          <div className="flex gap-1">{[...Array(5)].map((_, i) => <Star key={i} size={14} className={i < product.rating ? 'text-4ever-blue fill-4ever-blue' : 'text-gray-600'} />)}</div>
+          <div className="flex items-center gap-3 pt-2">
+            <span className="text-white font-bebas text-2xl">{product.price}</span>
+            <span className="text-gray-500 line-through text-sm">{product.originalPrice}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const DailyQuote = () => {
+  const [currentQuote, setCurrentQuote] = useState(quotes[0]);
+  const [isAnimating, setIsAnimating] = useState(false);
+  useEffect(() => { const dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24)); setCurrentQuote(quotes[dayOfYear % quotes.length]); }, []);
+  const nextQuote = () => { setIsAnimating(true); setTimeout(() => { const nextIndex = (quotes.indexOf(currentQuote) + 1) % quotes.length; setCurrentQuote(quotes[nextIndex]); setIsAnimating(false); }, 300); };
+  return (
+    <div className="relative glass rounded-2xl p-8 md:p-12 max-w-4xl mx-auto">
+      <Quote className="absolute top-6 left-6 text-4ever-blue/30 w-16 h-16" />
+      <div className={`transition-all duration-300 ${isAnimating ? 'opacity-0 transform translate-y-4' : 'opacity-100 transform translate-y-0'}`}>
+        <blockquote className="text-xl md:text-2xl lg:text-3xl font-rajdhani text-white leading-relaxed text-center relative z-10 mb-6">"{currentQuote.text}"</blockquote>
+        <p className={`text-center text-lg font-orbitron ${currentQuote.isFounder ? 'text-4ever-blue glow-text' : 'text-white/70'}`}>- {currentQuote.author}</p>
+      </div>
+      <button onClick={nextQuote} className="mt-6 mx-auto block text-4ever-blue hover:text-white transition-colors flex items-center gap-2 group"><span className="font-rajdhani">Next Quote</span><ChevronRight className="group-hover:translate-x-1 transition-transform" size={20} /></button>
+    </div>
+  );
+};
+
+const Navigation = ({ showBack = false }) => {
+  const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
+  return (
+    <>
+      <nav className="fixed top-0 left-0 right-0 z-40 glass">
+        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            {showBack && <button onClick={() => navigate('/')} className="text-white/70 hover:text-4ever-blue transition-colors"><ArrowLeft size={24} /></button>}
+            <Link to="/" className="flex items-center gap-2">
+              <div className="w-10 h-10 bg-4ever-blue rounded-lg flex items-center justify-center pulse-glow"><Crown className="text-white" size={24} /></div>
+              <span className="font-orbitron font-bold text-xl text-white">4<span className="text-4ever-blue">ever</span> pump</span>
+            </Link>
+          </div>
+          <div className="hidden md:flex items-center gap-8">
+            <Link to="/products" className="text-white/70 hover:text-4ever-blue transition-colors font-rajdhani">Products</Link>
+            <a href="/#quotes" className="text-white/70 hover:text-4ever-blue transition-colors font-rajdhani">Daily Word</a>
+            <a href="/#about" className="text-white/70 hover:text-4ever-blue transition-colors font-rajdhani">About</a>
+          </div>
+          <button className="neon-button text-sm" onClick={() => setShowModal(true)}>Blessed</button>
+        </div>
+      </nav>
+      <GodHasYouModal isOpen={showModal} onClose={() => setShowModal(false)} />
+    </>
+  );
+};
+
+const ProductsPage = () => {
+  const [filter, setFilter] = useState('All');
+  const categories = ['All', 'Sneakers', 'Streetwear', 'Watches', 'Accessories'];
+  const filteredProducts = filter === 'All' ? products : products.filter(p => p.category === filter);
+  return (
+    <div className="min-h-screen bg-pure-black grid-bg">
+      <div className="fixed inset-0 pointer-events-none overflow-hidden">{[...Array(15)].map((_, i) => <Particle key={i} delay={i * 0.5} size={`${Math.random() * 10 + 5}px`} left={Math.random() * 100} duration={Math.random() * 5 + 8} />)}</div>
+      <Navigation showBack={true} />
+      <section className="pt-32 pb-16 px-4">
+        <div className="max-w-7xl mx-auto text-center">
+          <h1 className="font-bebas text-6xl md:text-8xl lg:text-9xl tracking-wider mb-4 slide-in-down"><span className="text-white">4</span><span className="text-4ever-blue glow-text">EVER</span><span className="text-white"> PUMP</span></h1>
+          <h2 className="font-orbitron text-2xl md:text-4xl text-white mb-8 slide-in-up delay-200"><span className="text-white glow-text-white">God Has You</span></h2>
+          <div className="flex justify-center gap-2 mb-12"><div className="w-24 h-1 bg-white rounded" /><div className="w-24 h-1 bg-4ever-blue rounded" /><div className="w-24 h-1 bg-white rounded" /></div>
+          <div className="flex flex-wrap justify-center gap-3 mb-8">{categories.map(cat => <button key={cat} onClick={() => setFilter(cat)} className={`px-6 py-2 rounded-full font-rajdhani font-semibold transition-all duration-300 ${filter === cat ? 'bg-4ever-blue text-white pulse-glow' : 'bg-white/10 text-white/70 hover:bg-white/20'}`}>{cat}</button>)}</div>
+        </div>
+      </section>
+      <section className="px-4 pb-20">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">{filteredProducts.map((product, index) => <ProductCard key={product.id} product={product} index={index} />)}</div>
+        </div>
+      </section>
+      <footer className="py-12 px-4 border-t border-white/10"><div className="max-w-7xl mx-auto text-center"><div className="flex items-center justify-center gap-2 mb-4"><Crown className="text-4ever-blue" size={24} /><span className="font-orbitron font-bold text-xl text-white">4<span className="text-4ever-blue">ever</span> pump</span></div><p className="text-white/50 font-rajdhani">© 2025 4ever pump. All rights reserved. God First, Always.</p></div></footer>
+    </div>
+  );
+};
+
+const HomePage = () => {
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
+  return (
+    <div className="min-h-screen bg-pure-black grid-bg">
+      <div className="fixed inset-0 pointer-events-none overflow-hidden">{[...Array(15)].map((_, i) => <Particle key={i} delay={i * 0.5} size={`${Math.random() * 10 + 5}px`} left={Math.random() * 100} duration={Math.random() * 5 + 8} />)}</div>
+      <Navigation />
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <div className="absolute inset-0"><div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl spin-glow" /><div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-blue-400/10 rounded-full blur-3xl animate-pulse" /></div>
+        <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
+          <h1 className="font-bebas text-6xl md:text-8xl lg:text-9xl tracking-wider mb-4 slide-in-down"><span className="text-white">4</span><span className="text-4ever-blue glow-text">EVER</span><span className="text-white"> PUMP</span></h1>
+          <p className="font-orbitron text-lg md:text-xl text-white/80 mb-8 slide-in-up delay-200">PREMIUM RESELLING • AUTHENTIC ONLY • GOD FIRST</p>
+          <div className="glass rounded-xl p-6 md:p-8 mb-10 slide-in-up delay-300">
+            <Quote className="text-4ever-blue/50 w-8 h-8 mx-auto mb-4" />
+            <p className="text-lg md:text-xl lg:text-2xl font-rajdhani text-white/90 leading-relaxed">"99% of people never succeed because they don't know it's a game like chess and if you know the game of chess you know the game of life"</p>
+            <p className="mt-4 text-4ever-blue font-orbitron font-bold glow-text">- 4ever pump</p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center slide-in-up delay-400">
+            <button onClick={() => setShowModal(true)} className="group relative inline-flex items-center justify-center px-12 py-6 text-xl font-orbitron font-bold text-white bg-transparent border-2 border-4ever-blue rounded-lg overflow-hidden transition-all duration-500 hover:bg-4ever-blue pulse-glow"><span className="relative z-10 flex items-center gap-3"><Heart className="group-hover:scale-125 transition-transform" />God Has You</span></button>
+            <button onClick={() => navigate('/products')} className="group relative inline-flex items-center justify-center px-12 py-6 text-xl font-orbitron font-bold text-black bg-white rounded-lg overflow-hidden transition-all duration-500 hover:bg-4ever-blue hover:text-white"><span className="relative z-10 flex items-center gap-3"><ShoppingBag className="group-hover:scale-125 transition-transform" />Shop Now<ArrowRight className="group-hover:translate-x-2 transition-transform" /></span></button>
+          </div>
+          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 bounce"><ChevronDown className="text-4ever-blue" size={32} /></div>
+        </div>
+      </section>
+      <section id="quotes" className="py-20 px-4"><div className="max-w-7xl mx-auto"><div className="text-center mb-12"><h2 className="font-bebas text-4xl md:text-6xl text-white mb-2">DAILY <span className="text-4ever-blue">WORD</span></h2><div className="w-24 h-1 bg-4ever-blue mx-auto rounded line-grow" /></div><DailyQuote /></div></section>
+      <section className="py-20 px-4"><div className="max-w-7xl mx-auto"><div className="text-center mb-16"><h2 className="font-bebas text-4xl md:text-6xl text-white mb-2">FEATURED <span className="text-4ever-blue">DROPS</span></h2><p className="font-rajdhani text-white/60 text-lg">Authenticated • Verified • Blessed</p><div className="w-24 h-1 bg-4ever-blue mx-auto mt-4 rounded line-grow" /></div><div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">{products.slice(0, 4).map((product, index) => <ProductCard key={product.id} product={product} index={index} />)}</div><div className="text-center mt-12"><button onClick={() => navigate('/products')} className="neon-button"><span className="flex items-center gap-2"><ShoppingBag size={18} />View All Products<ArrowRight size={18} /></span></button></div></div></section>
+      <section id="about" className="py-20 px-4"><div className="max-w-4xl mx-auto"><div className="glass rounded-2xl p-8 md:p-12 text-center"><h2 className="font-bebas text-4xl md:text-5xl text-white mb-6">ABOUT <span className="text-4ever-blue">4EVER PUMP</span></h2><p className="font-rajdhani text-lg text-white/80 leading-relaxed mb-8">We're not just resellers - we're curators of culture. Every piece we sell is authenticated, verified, and blessed. Our mission is simple: provide premium products while staying true to our faith and values. Life is a game of chess, and we're here to help you make the winning moves.</p><div className="flex justify-center gap-6 mb-8"><div className="text-center"><div className="text-3xl font-bebas text-4ever-blue">1000+</div><div className="text-white/60 font-rajdhani">Happy Customers</div></div><div className="w-px bg-white/20" /><div className="text-center"><div className="text-3xl font-bebas text-4ever-blue">100%</div><div className="text-white/60 font-rajdhani">Authentic</div></div><div className="w-px bg-white/20" /><div className="text-center"><div className="text-3xl font-bebas text-4ever-blue">24/7</div><div className="text-white/60 font-rajdhani">Support</div></div></div><div className="flex justify-center gap-4"><a href="#" className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-4ever-blue hover:border-4ever-blue transition-colors"><Instagram size={20} /></a><a href="#" className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-4ever-blue hover:border-4ever-blue transition-colors"><Twitter size={20} /></a><a href="#" className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-4ever-blue hover:border-4ever-blue transition-colors"><MessageCircle size={20} /></a></div></div></div></section>
+      <footer className="py-12 px-4 border-t border-white/10"><div className="max-w-7xl mx-auto text-center"><div className="flex items-center justify-center gap-2 mb-4"><Crown className="text-4ever-blue" size={24} /><span className="font-orbitron font-bold text-xl text-white">4<span className="text-4ever-blue">ever</span> pump</span></div><p className="text-white/50 font-rajdhani">© 2025 4ever pump. All rights reserved. God First, Always.</p></div></footer>
+      <GodHasYouModal isOpen={showModal} onClose={() => setShowModal(false)} />
+    </div>
+  );
+};
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/products" element={<ProductsPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+export default App;
